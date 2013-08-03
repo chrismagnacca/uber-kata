@@ -1,51 +1,38 @@
-import sqlite3
+import flask
+import flask.ext.sqlalchemy
+import flask.ext.restless
 
-from flask import Flask, request, session, g, redirect, url_for, \
-    abort, render_template, flash
+from flask.ext.sqlalchemy import SQLAlchemy
+from flask import Flask, g, jsonify, render_template, request, abort
 
-from contextlib import closing
+# Create the Flask Application & the Flask-SQLAlchemy Object.
+app = flask.Flask(__name__)
+app.config['DEBUG'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = flask.ext.sqlalchemy.SQLAlchemy(app)
 
-# configuration
-DATABASE = '/tmp/uber.db'
-DEBUG = True
-SECRET_KEY = 'development key'
-USERNAME = 'admin'
-PASSWORD = 'default'
+# Create Flask-SQLALchemy Models
+class Location(db.Model):
+  __tablename__ = 'locations'
+  id = db.Column(db.Integer, primary_key=True, nullable=False)
+  lat = db.Column(db.Float, nullable=False)
+  lng = db.Column(db.Float, nullable=False)
+  address = db.Column(db.Float, nullable=False)
+  nickname = db.Column(db.VARCHAR, nullable=False)
 
-# application
-app = Flask(__name__)
-app.config.from_object(__name__)
-app.config.from_envvar('UBER_SETTINGS', silent = True)
+# Create the Database Tables
+db.create_all()
 
-def initialize():
-    with closing(connect()) as db:
-
-        with app.open_resource('schema.sql', mode = 'r') as f:
-            db.cursor().executescript(f.read())
-        db.commit()
-
-def connect():
-  return sqlite3.connect(app.config['DATABASE'])
-
-@app.before_request
-def before_request():
-  g.db = connect()
-
-@app.teardown_request
-def teardown_request(exception):
-  db = getattr(g, 'db', None)
-  if db is not None:
-    db.close()
-
-
+# Create the Application Index
 @app.route('/')
-def show():
-  return None
+def hello_world():
+  return render_template('index.html')
 
+# Create the Flask-Restless API manager.
+manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 
+# Create API Endpoints, Available at /<tablename> by Default
+manager.create_api(Location, methods=['GET', 'POST', 'PUT', 'DELETE'], url_prefix='')
 
-
-
-if __name__ == '__main__':
-  initialize()
-  app.run()
+# start the flask loop
+app.run()
