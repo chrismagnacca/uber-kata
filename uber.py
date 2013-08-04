@@ -25,7 +25,7 @@ db.create_all()
 
 # Create the Application Index
 @app.route('/')
-def hello_world():
+def index():
   return render_template('index.html')
 
 # Create the Flask-Restless API manager.
@@ -33,6 +33,3 @@ manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 
 # Create API Endpoints, Available at /<tablename> by Default
 manager.create_api(Location, methods=['GET', 'POST', 'PUT', 'DELETE'], url_prefix='')
-
-# start the flask loop
-app.run()

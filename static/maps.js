@@ -1,4 +1,6 @@
-$(function(){ initialize(); });
+$(function(){
+  initialize();
+});
 
 function initialize() {
   var initialLocaiton;
