@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <title>Uber Code Kata</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='assets/bootstrap.min.css')}}"/>
   <link rel="stylesheet" href="{{url_for('static', filename='assets/uber.css')}}"/>
+  <style> #map-canvas img { max-width: none; }</style> <!-- google maps bootstrap patch-->
 
-  <script src="{{url_for('static', filename='assets/vendor/jquery-2.0.3.min.js')}}"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC07QHkm7xFRu6X9stoRDifMgdxudCB-0&sensor=false"></script>
   <script src="{{url_for('static', filename='assets/vendor/underscore-min.js')}}"></script>
+  <script src="{{url_for('static', filename='assets/vendor/jquery-2.0.3.min.js')}}"></script>
+  <script src="{{url_for('static', filename='assets/vendor/bootstrap.min.js')}}"></script>
   <script src="{{url_for('static', filename='assets/vendor/backbone-min.js')}}"></script>
-  <script src="{{url_for('static', filename='uber.js')}}"></script>
+  <script src="{{url_for('static', filename='maps.js')}}"></script>
 </head>
-
 <body>
-  <div id='uber-app'>
+  <div id="main" class="container">
+
+    <!-- location list -->
+    <div class="row">
+      <div class="span12">
+        <div id="uber-app"></div>
+      </div>
+    </div>
+
+    <!-- google map -->
+    <div class="row">
+      <div class="span12">
+        <div id="map-canvas" style="width: 800px; height: 600px;"></div>
+      </div>
+    </div>
 
   </div>
-  <!-- Templates -->
-
-  <script type="text/template" id="item-template">
-    <div class="view">
-      <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %> />
-      <label><%- title %></label>
-      <a class="destroy"></a>
-    </div>
-    <input class="edit" type="text" value="<%- title %>" />
-  </script>
-
-  <script type="text/template" id="stats-template">
-    <% if (done) { %>
-      <a id="clear-completed">Clear <%= done %> completed <%= done == 1 ? 'item' : 'items' %></a>
-    <% } %>
-    <div class="todo-count"><b><%= remaining %></b> <%= remaining == 1 ? 'item' : 'items' %> left</div>
-  </script>
-
-  </body>
+</body>
 </html>
