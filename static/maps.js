@@ -1,8 +1,8 @@
-$(function(){
-  initialize();
+$(function() {
+  InitializeMap();
 });
 
-function initialize() {
+function InitializeMap() {
   var initialLocaiton;
   var siberia = new google.maps.LatLng(60, 105);
   var columbus = new google.maps.LatLng(39.961201,-82.999491);
@@ -20,7 +20,6 @@ function initialize() {
     navigator.geolocation.getCurrentPosition(function(position) {
       initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
       map.setCenter(initialLocation);
-      placeInitialLocationMarker(initialLocation);
     }, function() {
       handleNoGeolocation(browserSupportFlag);
     });
@@ -30,25 +29,34 @@ function initialize() {
     handleNoGeolocation(browserSupportFlag);
   }
 
+  // without Geolocation, set initial map marker
   function handleNoGeolocation(errorFlag) {
     if (errorFlag == true) {
       alert("Geolocation service failed.");
       initialLocation = siberia;
     } else {
-      alert("Your browser doesn't support geolocation. Welcome to Columbus!");
+      alert("Your browser doesn't support Geolocation. Welcome to Columbus!");
       initialLocation = columbus;
     }
     map.setCenter(initialLocation);
-    placeInitialLocationMarker(initialLocation);
   }
 
-  function placeInitialLocationMarker(initialLocation) {
-    var marker = new google.maps.Marker({ position: initialLocation, map: map });
+  // place map marker
+  function placeMarker(location) {
+    var marker = new google.maps.Marker({ position: location, map: map });
     google.maps.event.addListener(marker, 'click', function () {
       infowindow.open(map, marker);
     });
   }
 
+  // add map click listener, display modal
+  google.maps.event.addListener(map, 'click', function(event) {
+    var lat = event.latLng.lat();
+    var lng = event.latLng.lng();
+    var marker = new google.maps.LatLng(lat, lng);
+    $('#modal-latitude').val(lat);
+    $('#modal-longitude').val(lng);
+    $('#add-location').modal('show');
+  });
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);

@@ -1,1 +1,22 @@
- 
+header {
+  display: block;
+  text-align: center;
+  padding-bottom: 5em;
+}
+
+ul#location-list {
+  list-style-type: none;
+  border-width: 0.125em;
+  width: 20em;
+}
+
+ul.locations li {
+  width: 20em;
+  border-style: solid;
+  border-width: 0.125em;
+}
+
+i.icon-remove {
+  margin-left: 0.250em;
+  margin-right: 0.250em;
+}
