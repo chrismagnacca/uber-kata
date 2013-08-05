@@ -1,6 +1,6 @@
 // Location View
 // --------------
-var LocationView = Backbone.Model.extend({
+var LocationView = Backbone.View.extend({
   tagName: 'li',
 
   template: "",

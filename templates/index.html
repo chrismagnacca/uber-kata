@@ -6,17 +6,25 @@
   <link rel="stylesheet" href="{{url_for('static', filename='assets/bootstrap.min.css')}}"/>
   <link rel="stylesheet" href="{{url_for('static', filename='assets/uber.css')}}"/>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-  <style> #map-canvas img { max-width: none; }</style> <!-- google maps bootstrap patch-->
+  <style>
+    #map label { width: auto; display:inline; }
+    #map img { max-width: none; max-height: none; }
+  </style> <!-- google maps bootstrap patch-->
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC07QHkm7xFRu6X9stoRDifMgdxudCB-0&sensor=false"></script>
   <script src="{{url_for('static', filename='assets/vendor/underscore-min.js')}}"></script>
   <script src="{{url_for('static', filename='assets/vendor/jquery-2.0.3.min.js')}}"></script>
   <script src="{{url_for('static', filename='assets/vendor/bootstrap.min.js')}}"></script>
   <script src="{{url_for('static', filename='assets/vendor/backbone-min.js')}}"></script>
-  <script src="{{url_for('static', filename='models/location-model.js')}}"></script>
-  <script src="{{url_for('static', filename='views/location-view.js')}}"></script>
-  <script src="{{url_for('static', filename='maps.js')}}"></script>
-</head>
+  <script src="{{url_for('static', filename='routers.js')}}"></script>
+  <script src="{{url_for('static', filename='views/google-map-view.js')}}"></script>
+  <!-- <script src="{{url_for('static', filename='maps.js')}}"></script -->
+  <script type="text/javascript">
+    $(function() {
+      var map = new app.views.GoogleMapView();
+    });
+  </script>
+  </head>
 <body>
 
   <header>
@@ -30,13 +38,14 @@
       <div class="span2 pull-left">
         <div id="uber-app">
           <ul id="location-list" class="locations">
+            <li class="location"> 1 </li>
           </ul>
         </div>
       </div>
 
       <!-- google maps -->
       <div class="span10 pull-right">
-        <div id="map-canvas" style="width: 800px; height: 600px;"></div>
+        <div id="map" style="width: 800px; height: 600px;"></div>
       </div>
 
     </div>
