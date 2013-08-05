@@ -18,7 +18,6 @@
   <script src="{{url_for('static', filename='assets/vendor/backbone-min.js')}}"></script>
   <script src="{{url_for('static', filename='routers.js')}}"></script>
   <script src="{{url_for('static', filename='views/google-map-view.js')}}"></script>
-  <!-- <script src="{{url_for('static', filename='maps.js')}}"></script -->
   <script type="text/javascript">
     $(function() {
       var map = new app.views.GoogleMapView();
@@ -68,13 +67,12 @@
           <br />
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-default" id="close-btn" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="save-btn">Save</button>
         </div>
       </div>
     </div>
   </div>
-
 
   <!-- templates -->
   <script type="text/template" id="location-item-template">

@@ -1,7 +1,7 @@
 app = app || {};
 
 app.views.GoogleMapView = Backbone.View.extend({
-  id: '#map',
+  id: 'map',
 
   googleMap: null,
 
@@ -48,12 +48,10 @@ app.views.GoogleMapView = Backbone.View.extend({
 
   placeMarker: function(location) {
     var marker = new google.maps.Marker({ position: location, map: this.googleMap });
-    google.maps.event.addListener(marker, 'click', function () {
-      infowindow.open(this.googleMap, marker);
-    });
   },
 
   addLocation: function(event) {
+    var self = this;
     google.maps.event.addListener(this.googleMap, 'click', function(event) {
       var lat = event.latLng.lat();
       var lng = event.latLng.lng();
@@ -61,7 +59,7 @@ app.views.GoogleMapView = Backbone.View.extend({
       $('#modal-latitude').val(lat);
       $('#modal-longitude').val(lng);
       $('#add-location').modal('show');
-      this.placeMarker(marker);
+      self.placeMarker(marker);
     });
   },
 
