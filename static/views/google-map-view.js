@@ -1,5 +1,6 @@
 app = app || {};
 
+// Generate Google Map & Attach Events
 app.views.GoogleMapView = Backbone.View.extend({
   id: 'map',
 
@@ -9,12 +10,14 @@ app.views.GoogleMapView = Backbone.View.extend({
     "click #map":"addLocation"
   },
 
+  // Default MapOptions
   mapOptions: {
     zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     center: new google.maps.LatLng(39.961201,-82.999491) // Columbus, OH Default
   },
 
+  // Setup Google Map & utilize Geolocation to center the map if possible
   initialize: function() {
     var self = this;
     this.googleMap = new google.maps.Map(document.getElementById('map'), this.mapOptions);
@@ -37,6 +40,7 @@ app.views.GoogleMapView = Backbone.View.extend({
     this.render();
   },
 
+  // Alert the user that Geolocation is disabled or not supported
   handleNoGeolocation: function(errorFlag) {
     if (errorFlag == true) {
       alert("Geolocation service failed!");
@@ -46,10 +50,12 @@ app.views.GoogleMapView = Backbone.View.extend({
     this.googleMap.setCenter(this.MapOptions.center);
   },
 
+  // place a map marker on the Google Map by passing in a google.maps.LatLng(lat,lng) object
   placeMarker: function(location) {
     var marker = new google.maps.Marker({ position: location, map: this.googleMap });
   },
 
+  // adds a Location from a click on the google map
   addLocation: function(event) {
     var self = this;
     google.maps.event.addListener(this.googleMap, 'click', function(event) {

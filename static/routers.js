@@ -1,3 +1,4 @@
+// Global Namespace
 app = {
     helpers: {},
     models : {},
@@ -10,6 +11,7 @@ app = {
     }
 }
 
+// Initialize Application Router & Define Routes
 app.routers.Router = Backbone.Router.extend({
     routes: {
         "":"mapView"
