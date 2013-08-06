@@ -1,11 +1,10 @@
-// Global Namespace
+// Establish Application Namespace
 app = {
-    helpers: {},
     models : {},
     views  : {},
     routers: {},
+    collections: {},
     init: function(){
-        mainView = new app.views.GoogleMapView();
         appRouter = new app.routers.Router();
         Backbone.history.start();
     }
@@ -14,10 +13,19 @@ app = {
 // Initialize Application Router & Define Routes
 app.routers.Router = Backbone.Router.extend({
     routes: {
-        "":"mapView"
+        "": "index"
     },
 
-    mapView: function(){
-        new app.views.GoogleMapView();
+    initialize: function(){
+      this.map = new app.views.GoogleMapView();
+      this.locationItems = new app.collections.LocationList();
+      this.locationsListView = new app.views.LocationListView({collection:this.locationItems});
+      this.locationsListView.render();
+    },
+
+    index: function(){
+      $('#location-list').html(this.locationsListView.el);
+      this.locationItems.fetch();
     }
 });
+

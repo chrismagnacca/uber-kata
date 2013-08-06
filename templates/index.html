@@ -17,12 +17,13 @@
   <script src="{{url_for('static', filename='assets/vendor/bootstrap.min.js')}}"></script>
   <script src="{{url_for('static', filename='assets/vendor/backbone-min.js')}}"></script>
   <script src="{{url_for('static', filename='routers.js')}}"></script>
+  <script src="{{url_for('static', filename='models/location-model.js')}}"></script>
+  <script src="{{url_for('static', filename='collections/location-collection.js')}}"></script>
+  <script src="{{url_for('static', filename='views/location-view.js')}}"></script>
+  <script src="{{url_for('static', filename='views/location-collection-view.js')}}"></script>
+  <script src="{{url_for('static', filename='views/location-view.js')}}"></script>
   <script src="{{url_for('static', filename='views/google-map-view.js')}}"></script>
-  <script type="text/javascript">
-    $(function() {
-      var map = new app.views.GoogleMapView();
-    });
-  </script>
+  <script src="{{url_for('static', filename='uber.js')}}"></script>
   </head>
 <body>
 
@@ -31,13 +32,12 @@
   </header>
 
   <div id="main" class="container">
-
+    <p> Click on the Map to add a favorite location </p>
     <!-- location list -->
     <div class="row">
       <div class="span2 pull-left">
         <div id="uber-app">
           <ul id="location-list" class="locations">
-            <li class="location"> 1 </li>
           </ul>
         </div>
       </div>
@@ -74,9 +74,5 @@
     </div>
   </div>
 
-  <!-- templates -->
-  <script type="text/template" id="location-item-template">
-    <li class="location"><i class="icon-remove"></i> <%- nickname %></li>
-  </script>
 </body>
 </html>

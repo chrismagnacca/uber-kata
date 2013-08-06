@@ -1,16 +1,15 @@
-// Location Model
-// --------------
-// Attributes: lat: latitude, lng: longitude, address: location, nickname: friendly name
-var Location = Backbone.Model.extend({
+app = app || {};
+
+app.models.LocationItem = Backbone.Model.extend({
   defaults: function() {
     return {
       lat: -1,
       lng: -1,
-      address: '',
-      nickname: ''
+      address: 'empty',
+      nickname: 'empty'
     };
   },
 
-  urlRoot: '/locations',
+  url: '/locations'
 });
 

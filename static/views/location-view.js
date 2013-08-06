@@ -1,28 +1,24 @@
-// Location View
-// --------------
-var LocationView = Backbone.View.extend({
-  tagName: 'li',
+app = app || {};
 
-  template: "",
+app.views.LocationView = Backbone.View.extend({
+  template: _.template("<li class='location'><i class='icon-remove'></i> <%= nickname %></li>"),
 
   events: {
-    "click .icon-remove" : "removeLocationItem"
+    "click .icon-remove" : "remove"
   },
 
   initialize: function() {
-    this.model.fetch();
-    this.template = _.template($('#location-item-template').html());
-    this.listenTo(this.model, 'change', this.render);
-    this.listenTo(this.model, 'destroy', this.remove);
+    this.model.on('all', this.render, this);
+    this.model.on('destroy hide', this.remove, this);
   },
 
-  render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
+  render: function(){
+    this.$el.html(_.template(this.template(this.model.toJSON())));
     return this;
   },
 
-  clear: function() {
-    this.model.destroy();
+  remove: function() {
+    this.$el.remove();
   }
 });
 

@@ -17,7 +17,7 @@ class Location(db.Model):
   id = db.Column(db.Integer, primary_key=True, nullable=False)
   lat = db.Column(db.Float, nullable=False)
   lng = db.Column(db.Float, nullable=False)
-  address = db.Column(db.Float, nullable=False)
+  address = db.Column(db.VARCHAR, nullable=False)
   nickname = db.Column(db.VARCHAR, nullable=False)
 
 # Create the Database Tables
