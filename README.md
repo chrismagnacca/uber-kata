@@ -42,5 +42,16 @@
 
 * Back-end: Python, Flask, Flask-Restless
 * Front-end: Backbone.js, Google Maps API
+* Recommended Browser: Google Chrome
   
-  
+=============
+
+### TODO:
+
+* add in the ability to prioritize listed items
+* add authentication/sessioning for multiple users
+
+=============
+
+
+
