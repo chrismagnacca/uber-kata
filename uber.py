@@ -31,5 +31,5 @@ def index():
 # Create the Flask-Restless API manager.
 manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
 
-# Create API Endpoints, Available at /<tablename> by Default
-manager.create_api(Location, methods=['GET', 'POST', 'PUT', 'DELETE'], url_prefix='')
+# Create API Endpoints, Available at /<tablename> by Default, Default Pagination Off
+manager.create_api(Location, methods=['GET', 'POST', 'PUT', 'DELETE'], url_prefix='', results_per_page=-1)

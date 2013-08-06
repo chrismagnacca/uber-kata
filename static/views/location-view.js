@@ -9,7 +9,7 @@ app.views.LocationView = Backbone.View.extend({
 
   initialize: function() {
     this.model.on('all', this.render, this);
-    this.model.on('destroy hide', this.remove, this);
+    this.model.on('hide', this.remove, this);
   },
 
   render: function() {

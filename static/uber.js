@@ -15,10 +15,11 @@ $(function() {
       address: address,
       nickname: nickname
     });
-    console.log(location);
     location.save();
     $('#add-location').modal('hide');
     $('#address').val('');
     $('#nickname').val('');
+    app.locationsListView.render();
+    app.locationItems.fetch();
   });
 });

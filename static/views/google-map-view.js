@@ -35,7 +35,8 @@ app.views.GoogleMapView = Backbone.View.extend({
       browserSupportFlag = false;
       this.handleNoGeolocation(browserSupportFlag);
     }
-    google.maps.event.addListener(this.googleMap, "click", this.addLocation(event));
+    // Add Click Handler for Modal Dialog
+    this.googleMap.addListener(this.googleMap, "click", this.addLocation(event));
 
     this.render();
   },
