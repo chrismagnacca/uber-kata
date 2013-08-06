@@ -3,6 +3,7 @@ app = app || {};
 app.views.LocationView = Backbone.View.extend({
   template: _.template("<h3 class='location'><i class='icon-remove'></i> <%= nickname %></h3>"),
 
+  // Destroy the Model on Click
   events: {
     "click .icon-remove" : "removeModel"
   },
@@ -17,6 +18,7 @@ app.views.LocationView = Backbone.View.extend({
     return this;
   },
 
+  // Remove the Element from the DOM
   remove: function() {
     this.$el.remove();
   },

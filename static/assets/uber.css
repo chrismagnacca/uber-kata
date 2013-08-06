@@ -1,7 +1,16 @@
 header {
   display: block;
   text-align: center;
-  padding-bottom: 5em;
+  padding-bottom: 1em;
+}
+
+body {
+  background-color: #A0C2DE;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+div#page-title{
+  font-size: 3em;
 }
 
 ul#location-list {
@@ -19,4 +28,32 @@ ul.locations li {
 i.icon-remove {
   margin-left: 0.250em;
   margin-right: 0.250em;
+}
+
+.error-message {
+  padding: 1.00em;
+  margin-bottom: 1.00em;
+  background-color: #FF5C5C;
+  border-radius: 0.313em;
+}
+
+.hide {
+  display: none;
+}
+
+#map {
+  box-shadow: -.4em .4em 0 rgba(20,20,20,.4);
+}
+
+div#notice {
+  font-size: 0.70em;
+}
+
+.asterisk {
+  margin-top: -1em;
+  vertical-align: text-top;
+}
+
+.required {
+  color: #CD5C5C;
 }

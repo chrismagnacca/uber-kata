@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="{{url_for('static', filename='assets/bootstrap.min.css')}}"/>
   <link rel="stylesheet" href="{{url_for('static', filename='assets/uber.css')}}"/>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
   <style>
     #map label { width: auto; display:inline; }
     #map img { max-width: none; max-height: none; }
@@ -28,11 +29,11 @@
 <body>
 
   <header>
-    <h3>Uber Web Kata</h3>
+    <div id="page-title">Uber Web Kata</div>
+    <p> Click on the Map to Add a Favorite Location! </p>
   </header>
 
   <div id="main" class="container">
-    <p> Click on the Map to add a favorite location </p>
     <!-- location list -->
     <div class="row">
       <div class="span2 pull-left">
@@ -50,18 +51,21 @@
   </div>
 
   <!--add location modal -->
-  <div class="modal fade" id="add-location">
+  <div class="modal fade" data-keyboard="false" id="add-location">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Add Favorite Location</h4>
+          <button type="button" id="modal-close-x" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3 class="modal-title">Add Favorite Location</h3>
+          <div class="required" id="notice">(*required fields)</div>
         </div>
         <div class="modal-body">
-          <input type="text" id='nickname' placeholder="Nickname" class="pull-left input-large" />
-          <input type="text" id='address' placeholder="Address" class="pull-right input-large" />
+          <div class="error-message hide" id="error"></div>
+          <div class="pull-left"><input type="text" id='nickname' placeholder="Name" class="input-large" /><span class='required asterisk'>*</span></div>
+          <div class="pull-right"><input type="text" id='address' placeholder="Address" class="input-large" /><span class='required asterisk'>*</span></div>
           <input type="hidden" name="lat" id="modal-latitude" value=""/>
           <input type="hidden" name="lng" id="modal-longitude" value="" />
+          <br />
           <br />
         </div>
         <div class="modal-footer">
