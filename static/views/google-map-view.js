@@ -4,6 +4,8 @@ app = app || {};
 app.views.GoogleMapView = Backbone.View.extend({
   id: 'map',
 
+  markers: [],
+
   googleMap: null,
 
   events: {
@@ -35,9 +37,9 @@ app.views.GoogleMapView = Backbone.View.extend({
       browserSupportFlag = false;
       this.handleNoGeolocation(browserSupportFlag);
     }
-    // Add Click Handler for Modal Dialog
+    // Add Click Handler for Modal Dialog, Assign GoogleMap to GlobalNamespace
     this.googleMap.addListener(this.googleMap, "click", this.addLocation(event));
-
+    app.googleMap = this.googleMap;
     this.render();
   },
 
@@ -54,6 +56,7 @@ app.views.GoogleMapView = Backbone.View.extend({
   // place a map marker on the Google Map by passing in a google.maps.LatLng(lat,lng) object
   placeMarker: function(location) {
     var marker = new google.maps.Marker({ position: location, map: this.googleMap });
+    this.markers.push(marker);
   },
 
   // adds a Location from a click on the google map

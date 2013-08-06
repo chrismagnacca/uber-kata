@@ -5,7 +5,7 @@ app.collections.LocationList = Backbone.Collection.extend({
   model: app.models.LocationItem,
 
   initialize: function() {
-    this.on('remove', this.hideModel);
+    this.on('remove', this.hideModel, this);
   },
 
   hideModel: function(model){
