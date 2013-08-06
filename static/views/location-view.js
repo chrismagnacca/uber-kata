@@ -1,7 +1,7 @@
 app = app || {};
 
 app.views.LocationView = Backbone.View.extend({
-  template: _.template("<li class='location'><i class='icon-remove'></i> <%= nickname %></li>"),
+  template: _.template("<h3 class='location'><i class='icon-remove'></i> <%= nickname %></h3>"),
 
   events: {
     "click .icon-remove" : "remove"
@@ -12,8 +12,8 @@ app.views.LocationView = Backbone.View.extend({
     this.model.on('destroy hide', this.remove, this);
   },
 
-  render: function(){
-    this.$el.html(_.template(this.template(this.model.toJSON())));
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
 

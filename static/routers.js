@@ -24,7 +24,7 @@ app.routers.Router = Backbone.Router.extend({
     },
 
     index: function(){
-      $('#location-list').html(this.locationsListView.el);
+      $('#uber-app').html(this.locationsListView.el);
       this.locationItems.fetch();
     }
 });
